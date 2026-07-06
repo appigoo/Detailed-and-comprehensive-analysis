@@ -163,7 +163,7 @@ def candle_pattern(row, prev):
     br = body / rng
     tags = []
 
-    base = "十字/小實體" if br < 0.12 else ("陽線(紅K)" if c > o else "陰線(綠K)")
+    base = "十字/小實體" if br < 0.12 else ("陽線(綠K)" if c > o else "陰線(紅K)")
     if br >= 0.7:
         base += "・長實體"
     tags.append(base)
