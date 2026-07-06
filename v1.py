@@ -503,8 +503,8 @@ def make_chart(df, rep):
     fig.add_trace(go.Candlestick(
         x=df.index, open=df["Open"], high=df["High"],
         low=df["Low"], close=df["Close"],
-        increasing_line_color="#d64541", increasing_fillcolor="#d64541",
-        decreasing_line_color="#2e8b57", decreasing_fillcolor="#2e8b57",
+        increasing_line_color="#2e8b57", increasing_fillcolor="#2e8b57",
+        decreasing_line_color="#d64541", decreasing_fillcolor="#d64541",
         name="K線"), row=1, col=1)
 
     for span, color in [(10, "#e8a33d"), (30, "#d64541"), (40, "#3b6fb5")]:
@@ -525,14 +525,14 @@ def make_chart(df, rep):
         fig.add_hline(y=rep["sup"], line=dict(color="#2e8b57", width=1, dash="dash"),
                       annotation_text=f"支撐 {rep['sup']:.2f}", row=1, col=1)
 
-    vol_colors = np.where(df["Close"] >= df["Open"], "#d64541", "#2e8b57")
+    vol_colors = np.where(df["Close"] >= df["Open"], "#2e8b57", "#d64541")
     fig.add_trace(go.Bar(x=df.index, y=df["Volume"], marker_color=vol_colors,
                          name="成交量", showlegend=False), row=2, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df["VOL_MA20"],
                              line=dict(width=1, color="#e8a33d"),
                              name="量MA20", showlegend=False), row=2, col=1)
 
-    hist_colors = np.where(df["MACD_hist"] >= 0, "#d64541", "#2e8b57")
+    hist_colors = np.where(df["MACD_hist"] >= 0, "#2e8b57", "#d64541")
     fig.add_trace(go.Bar(x=df.index, y=df["MACD_hist"], marker_color=hist_colors,
                          name="MACD柱", showlegend=False), row=3, col=1)
     fig.add_trace(go.Scatter(x=df.index, y=df["DIF"], line=dict(width=1, color="#e8a33d"),
